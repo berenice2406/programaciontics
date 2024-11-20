@@ -49,11 +49,14 @@ def main():
         print(tabla_resultado)
         print(f'los datos tienen {len(tabla_resultado)} tuplas')
 
+        tabla_resultado.to_csv('estaciones_con_nieve.csv', index=False)
+
+
         tabla_provincias: pd.DataFrame=getAEMETTABLE(file_name='datos-idema-provincia.csv')
         tabla_idema_provincia=tabla_resultado.merge(tabla_provincias, on='idema')
         print(tabla_idema_provincia)
 
-        
+
          #Obtener la tabla de los idema y ubicaciones de las estaciones en las que no ha habido nieve en algùn momento
         idemas_con_nieve=set(tabla_resultado['idema'].to_list())
         todos_los_idemas=set(tabla_pandas["idema"].drop_duplicates().to_list())
